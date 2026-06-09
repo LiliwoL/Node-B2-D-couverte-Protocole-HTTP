@@ -2,6 +2,25 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
+// Lecure du fichier .env pour les variables d'environnement
+require('dotenv').config();
+
+// Importation des fonctions de chaque étape du jeu de piste
+const { handleEtape1 } = require('./etapes/etape1');
+const { handleEtape2 } = require('./etapes/etape2');
+const { handleEtape3 } = require('./etapes/etape3');
+const { handleEtape4 } = require('./etapes/etape4');
+const { handleEtape5 } = require('./etapes/etape5');
+const { handleEtape6 } = require('./etapes/etape6');
+const { handleEtape7 } = require('./etapes/etape7');
+const { handleEtape8 } = require('./etapes/etape8');
+const { handleEtape9 } = require('./etapes/etape9');
+const { handleEtape10 } = require('./etapes/etape10');
+const { handleEtape11 } = require('./etapes/etape11');
+const { handleEtape12 } = require('./etapes/etape12');
+const { handleEtape13 } = require('./etapes/etape13');
+// Ajoutez d'autres étapes du jeu de piste ici...
+
 
 // Création de la base de données SQLite
 const db = new sqlite3.Database('etapes.db');
@@ -33,7 +52,7 @@ const server = http.createServer((req, res) => {
 
         // Traitement des différentes étapes du jeu de piste
         switch (path) {
-            case '/etape1':
+            case '/bienvenue':                
                 handleEtape1(res);
                 break;
             case '/etape2':
@@ -46,7 +65,7 @@ const server = http.createServer((req, res) => {
                 handleEtape4(res, method);
                 break;
             case '/etape5':
-                handleEtape5(res, req.headers['content-type']);
+                handleEtape5(req,res);
                 break;
             case '/etape6':
                 handleEtape6(res, req.headers['content-type']);
@@ -147,203 +166,15 @@ function handleAdminReset(res) {
     });
 }
 
-// Étape 1: Introduction
-function handleEtape1(res) {
-    const response = {
-        etape: 'Introduction',
-        message: 'Bienvenue dans le jeu de piste HTTP !',
-        cours: 'Le protocole HTTP (Hypertext Transfer Protocol) est utilisé pour la communication sur le web. Dans cette première étape, vous allez apprendre les bases du jeu.'
-    };
 
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
 
-// Étape 2: Exemple avec paramètres
-function handleEtape2(res, query) {
-    const response = {
-        etape: 'Paramètres dans l\'URL',
-        message: 'Bravo ! Vous avez réussi la première étape. Maintenant, explorons l\'utilisation des paramètres dans l\'URL.',
-        cours: 'Les paramètres dans l\'URL permettent de transmettre des informations à travers les requêtes HTTP. Vous pouvez les utiliser pour personnaliser vos requêtes.'
-    };
+/**
+ * Lecture du port et de l'adresse IP à partir du fichier .env
+ * Si les variables d'environnement ne sont pas définies, utilisez des valeurs par défaut
+ */
+const HOST_PORT = process.env.HOST_PORT || 800;
+const HOST_IP = process.env.HOST_IP || '127.0.0.1';
 
-    // Ajout du paramètre nom dans la réponse
-    if (query && query.nom) {
-        response.nom = query.nom;
-    }
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-
-// Étape 3: Méthodes HTTP - GET
-function handleEtape3(res, method) {
-    const response = {
-        etape: 'Méthodes HTTP - GET',
-        message: `Vous avez utilisé la méthode ${method}. Bien joué !`,
-        cours: 'La méthode GET est utilisée pour récupérer des données à partir du serveur. Elle est souvent utilisée pour les requêtes de lecture.'
-    };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-
-// Étape 4: Méthodes HTTP - POST
-function handleEtape4(res, method) {
-    const response = {
-        etape: 'Méthodes HTTP - POST',
-        message: `Bonne utilisation de la méthode ${method}.`,
-        cours: 'La méthode POST est utilisée pour envoyer des données au serveur, souvent utilisée pour les requêtes de création.'
-    };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-
-// Étape 5: Types de contenu - GET
-function handleEtape5(res, contentType) {
-    const response = {
-        etape: 'Types de contenu - GET',
-        message: `Vous avez spécifié le type de contenu ${contentType}.`,
-        cours: 'Le type de contenu indique au serveur le format des données que vous attendez en réponse. Dans une requête GET, cela peut souvent être "application/json" ou "text/html".'
-    };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-
-// Étape 6: Types de contenu - POST
-function handleEtape6(res, contentType) {
-    const response = {
-        etape: 'Types de contenu - POST',
-        message: `Vous avez spécifié le type de contenu ${contentType} dans votre requête POST.`,
-        cours: 'Lors de l\'envoi de données avec la méthode POST, vous devez indiquer au serveur le format des données que vous envoyez. Cela est souvent spécifié avec l\'en-tête "Content-Type".'
-    };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-
-// Étape 7: Paramètres dans l'URL et méthode - GET
-function handleEtape7(res, method, query) {
-    const response = {
-        etape: 'Paramètres dans l\'URL et méthode - GET',
-        message: `Vous avez utilisé la méthode ${method} avec les paramètres ${JSON.stringify(query)}.`,
-        cours: 'Combiner la méthode GET avec des paramètres dans l\'URL vous permet de personnaliser davantage vos requêtes. Dans cette étape, vous avez utilisé les deux ensemble.'
-    };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-
-// Étape 8: Méthode et type de contenu - POST
-function handleEtape8(res, method, contentType) {
-    const response = {
-        etape: 'Méthode et type de contenu - POST',
-        message: `Vous avez utilisé la méthode ${method} avec le type de contenu ${contentType}.`,
-        cours: 'Cette étape combine la méthode POST avec la spécification du type de contenu. Cela est souvent nécessaire lors de l\'envoi de données au serveur.'
-    };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-
-// Étape 9: Méthode et type de contenu - PUT
-function handleEtape9(res, method, contentType) {
-    const response = {
-        etape: 'Méthode et type de contenu - PUT',
-        message: `Vous avez utilisé la méthode ${method} avec le type de contenu ${contentType}.`,
-        cours: 'La méthode PUT est utilisée pour mettre à jour des données sur le serveur. L\'en-tête "Content-Type" est souvent utilisé pour spécifier le format des données envoyées.'
-    };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-
-// Étape 10: Méthode et type de contenu - DELETE
-function handleEtape10(res, method, contentType) {
-    const response = {
-        etape: 'Méthode et type de contenu - DELETE',
-        message: `Vous avez utilisé la méthode ${method} avec le type de contenu ${contentType}.`,
-        cours: 'La méthode DELETE est utilisée pour supprimer des données sur le serveur. Vous pouvez également spécifier le type de contenu pour indiquer le format des données que vous envoyez.'
-    };
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
-}
-// Étape 11: Stockage des paramètres dans la base de données
-function handleEtape11(res, query) {
-    const nom = query.nom;
-    const valeur = query.valeur;
-
-    db.run("INSERT INTO parametres (nom, valeur) VALUES (?, ?)", [nom, valeur], function (err) {
-        if (err) {
-            console.error(err.message);
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Internal Server Error' }));
-            return;
-        }
-
-        const response = {
-            etape: 'Stockage des paramètres dans la base de données',
-            message: 'Les paramètres ont été enregistrés dans la base de données avec succès.',
-            cours: 'Dans cette étape, vous avez appris à stocker des paramètres de requête dans une base de données. Ceci est utile pour sauvegarder des informations persistantes.'
-        };
-
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(response));
-    });
-}
-
-// Étape 12: Requête SELECT dans la base de données
-function handleEtape12(res) {
-    db.all("SELECT * FROM parametres", [], (err, rows) => {
-        if (err) {
-            console.error(err.message);
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Internal Server Error' }));
-            return;
-        }
-
-        const response = {
-            etape: 'Requête SELECT dans la base de données',
-            message: 'Vous avez effectué une requête SELECT dans la base de données.',
-            cours: 'La requête SELECT est utilisée pour récupérer des données de la base de données. Vous avez obtenu la liste des paramètres stockés.'
-        };
-
-        response.parametres = rows;
-
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(response));
-    });
-}
-
-// Étape 13: Requête DELETE dans la base de données
-function handleEtape13(res) {
-    db.run("DELETE FROM parametres", function (err) {
-        if (err) {
-            console.error(err.message);
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Internal Server Error' }));
-            return;
-        }
-
-        const response = {
-            etape: 'Requête DELETE dans la base de données',
-            message: 'Vous avez effectué une requête DELETE dans la base de données.',
-            cours: 'La requête DELETE est utilisée pour supprimer des données de la base de données. Vous avez supprimé tous les paramètres stockés.'
-        };
-
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(response));
-    });
-}
-
-// Ajoutez d'autres étapes du jeu de piste ici...
-
-const PORT = 800;
-const IP_ADDRESS = '127.0.0.1';
-
-server.listen(PORT, IP_ADDRESS, () => {
-    console.log(`Serveur en écoute sur http://${IP_ADDRESS}:${PORT}`);
+server.listen(HOST_PORT, HOST_IP, () => {
+    console.log(`Serveur en écoute sur http://${HOST_IP}:${HOST_PORT}`);
 });
