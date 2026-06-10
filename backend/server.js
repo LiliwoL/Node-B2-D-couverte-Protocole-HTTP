@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
                 handleEtape2(res, parsedUrl.query);
                 break;
             case '/etape3':
-                handleEtape3(res, method);
+                handleEtape3(res, req);
                 break;
             case '/etape4':
                 handleEtape4(res, method);
@@ -68,28 +68,28 @@ const server = http.createServer((req, res) => {
                 handleEtape5(req,res);
                 break;
             case '/etape6':
-                handleEtape6(res, req.headers['content-type']);
+                handleEtape6(res, req);
                 break;
             case '/etape7':
-                handleEtape7(res, method, parsedUrl.query);
+                handleEtape7(res, req);
                 break;
             case '/etape8':
-                handleEtape8(res, method, req.headers['content-type']);
+                handleEtape8(res, req);
                 break;
             case '/etape9':
-                handleEtape9(res, method, req.headers['content-type']);
+                handleEtape9(res, req);
                 break;
             case '/etape10':
-                handleEtape10(res, method, req.headers['content-type']);
+                handleEtape10(res, req);
                 break;
             case '/etape11':
-                handleEtape11(res, parsedUrl.query);
+                handleEtape11(res, req);
                 break;
             case '/etape12':
-                handleEtape12(res);
+                handleEtape12(res, req);
                 break;
             case '/etape13':
-                handleEtape13(res);
+                handleEtape13(res, req);
                 break;
             // Ajoutez d'autres étapes du jeu de piste ici...
 

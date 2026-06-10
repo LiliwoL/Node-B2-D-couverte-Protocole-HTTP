@@ -21,7 +21,13 @@ function handleEtape4(res, method) {
         response.warning = '💀💀💀 Méthode incorrecte. Assurez-vous d\'utiliser la méthode POST pour réussir cette étape. 💀💀💀';
     }else{
         response.success = '✅✅✅ Vous avez utilisé la méthode POST. Vous pouvez passer à l\'étape suivante. ✅✅✅';
-        response.next_step = 'Pour passer à l\'étape suivante, vous devez spécifier un type de contenu "application/json" dans votre requête GET.';
+
+        response.next_step = 'Pour passer à l\'étape suivante, vous devez spécifier un type de contenu "application/json" dans votre requête POST à l\'URL /etape5.';
+        response.next_step += 'Cela vous permettra de comprendre comment les en-têtes HTTP fonctionnent pour spécifier le format des données envoyées au serveur. ';
+        response.next_step += 'N\'oubliez pas que la méthode POST est souvent utilisée pour créer de nouvelles ressources sur le serveur, tandis que la méthode PUT est utilisée pour mettre à jour des ressources existantes. ';
+        response.next_step += 'En utilisant ces méthodes avec les bons types de contenu, vous pourrez mieux comprendre comment interagir avec les API RESTful et les serveurs web. ';
+        response.next_step += 'Pour plus d\'informations sur les méthodes HTTP et les types de contenu, vous pouvez consulter la documentation officielle de MDN : ';
+        response.next_step += 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST';
     }
 
     res.writeHead(200, { 'Content-Type': 'application/json' });

@@ -6,7 +6,7 @@
  * Dans cette étape, les utilisateurs apprennent à utiliser les paramètres dans l'URL pour personnaliser leurs requêtes HTTP.
  * Ils doivent inclure un paramètre "nom" dans l'URL pour réussir cette étape.
  * 
- * Pour passer à l'étape suivante, ils doivent faire une requête GET à l'URL /etape3.
+ * Pour passer à l'étape suivante, ils doivent faire une requête GET à l'URL /etape3 avec le paramètre "prenom" dans l'URL et un paramètre "age".
  */
 function handleEtape2(res, query) {
     const response = {
@@ -20,7 +20,13 @@ function handleEtape2(res, query) {
         response.message = `Bravo ${query.nom}! Vous avez réussi la première étape. Maintenant, explorons l\'utilisation des paramètres dans l\'URL.`;
         response.success = '✅✅✅ Le paramètre nom est présent dans l\'URL. Vous pouvez passer à l\'étape suivante. ✅✅✅';
 
-        response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête GET à l\'URL /etape3.';
+        response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête GET à l\'URL /etape3 avec un paramètre prenom dans l\'URL et un paramètre age.';
+        response.next_step += 'Cela vous permettra de comprendre comment les paramètres dans l\'URL fonctionnent pour personnaliser vos requêtes HTTP. ';
+        response.next_step += 'N\'oubliez pas que les paramètres dans l\'URL sont souvent utilisés pour filtrer ou personnaliser les données que vous récupérez du serveur. ';
+        response.next_step += 'En utilisant ces paramètres, vous pourrez mieux comprendre comment interagir avec les API RESTful et les serveurs web. ';
+        response.next_step += 'Pour plus d\'informations sur les paramètres dans l\'URL, vous pouvez consulter la documentation officielle de MDN : ';
+        response.next_step += 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET';
+        
     }else{
         response.message += ' Cependant, le paramètre nom est manquant dans votre requête. Veuillez l\'inclure pour réussir cette étape.';
         response.warning = '💀💀💀 Le paramètre nom est manquant dans l\'URL. Assurez-vous de l\'inclure pour réussir cette étape. 💀💀💀'
