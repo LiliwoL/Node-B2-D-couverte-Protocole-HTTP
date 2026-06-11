@@ -50,6 +50,12 @@ const server = http.createServer((req, res) => {
             return;
         }
 
+        // etape8
+        if (path.contains('/etape8/api/users/')) {
+            handleEtape8(res, req);
+            return;
+        }
+
         // Traitement des différentes étapes du jeu de piste
         switch (path) {
             case '/bienvenue':                
@@ -73,9 +79,10 @@ const server = http.createServer((req, res) => {
             case '/etape7':
                 handleEtape7(res, req);
                 break;
-            case '/etape8':
+            // Etape 8 est traitée séparément pour gérer les chemins dynamiques avec des IDs d'utilisateurs
+            /* case '/etape8/api/users/':
                 handleEtape8(res, req);
-                break;
+                break; */
             case '/etape9':
                 handleEtape9(res, req);
                 break;

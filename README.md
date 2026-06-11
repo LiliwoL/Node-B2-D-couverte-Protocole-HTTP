@@ -13,6 +13,9 @@ nodemon server.js
 
 ---
 
+Requtete içdempotentes
+https://developer.mozilla.org/fr/docs/Glossary/Idempotent
+
 # Etape 1
 
 URL: /bienvenue
@@ -48,8 +51,25 @@ Accept = application/json
 
 # Etape 7
 
-URL: /etape7
+URL: /etape7?filename=monfichier.txt
 Methode DELETE
 Paramètre dans l'url filename
 
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/DELETE
+
+# Etape 8
+
+URL: /etape8/api/users/457521
+Methode PATCH
+Content-Type : application/json
+Body:
+// Le role doit contenir le mot Developer
+{
+  "role": "Developer",
+  "email": "anything@truc.com"
+}
+
+# Etape 9
+
+https://developer.mozilla.org/fr/docs/Web/HTTP/Reference/Methods/PATCH
+https://blog.postman.com/http-patch-method/
