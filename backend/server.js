@@ -51,7 +51,7 @@ const server = http.createServer((req, res) => {
         }
 
         // etape8
-        if (path.contains('/etape8/api/users/')) {
+        if (path.includes('/etape8/api/users/')) {
             handleEtape8(res, req);
             return;
         }
@@ -79,10 +79,7 @@ const server = http.createServer((req, res) => {
             case '/etape7':
                 handleEtape7(res, req);
                 break;
-            // Etape 8 est traitée séparément pour gérer les chemins dynamiques avec des IDs d'utilisateurs
-            /* case '/etape8/api/users/':
-                handleEtape8(res, req);
-                break; */
+            // Etape 8 est traitée séparément pour gérer les chemins dynamiques avec des IDs d'utilisateurs            
             case '/etape9':
                 handleEtape9(res, req);
                 break;

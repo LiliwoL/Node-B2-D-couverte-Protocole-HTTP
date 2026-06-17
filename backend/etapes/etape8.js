@@ -18,19 +18,9 @@
  * @param {*} req 
  */
 function handleEtape8(res, req) {
-
     // Récupération de la méthode et du type de contenu de la requête
     const method = req.method;
-    const contentType = req.headers['content-type'];
-
-    // Récupération du body de la requête
-    const body = [];
-    req.on('data', chunk => {
-        body.push(chunk);
-    }).on('end', () => {
-        const parsedBody = Buffer.concat(body).toString();
-        console.log('Body de la requête:', parsedBody);
-    });
+    const contentType = req.headers['content-type'];    
 
     const response = {
         etape: 'Méthode et type de contenu - PATCH',
@@ -47,30 +37,43 @@ function handleEtape8(res, req) {
         response.message = `Le type de contenu ${contentType} n'est pas correct pour cette étape. Veuillez utiliser "application/json" comme type de contenu pour réussir cette étape.`;
         response.warning = '💀💀💀 Type de contenu incorrect. Assurez-vous d\'utiliser "application/json" comme type de contenu pour réussir cette étape. 💀💀💀';
     } else {
+        
+        // Récupération du body de la requête
+        const body = [];
+        req.on('data', chunk => {
+            body.push(chunk);
+        }).on('end', () => {
+            // Conversion du body en chaîne de caractères
+            const parsedBody = Buffer.concat(body).toString();
+            
+            // On attend role avec la valeur contenant le mot "Developer"
+            // et email avec n'importe quelle valeur (on ne vérifie pas l'email pour cette étape)
+            try {
+                // Conversion du body en JSON
+                const jsonBody = JSON.parse(parsedBody);
+                console.log('Json de la requête:', jsonBody);
 
-        // Vérification du contenu du body
-        //
-        // On attend role avec la valeur contenant "Developer"
-        // et email avec n'importe quelle valeur (on ne vérifie pas l'email pour cette étape)
-        try {
-            const jsonBody = JSON.parse(parsedBody);
-
-            // Vérification de la présence du champ "role" et de sa valeur
-            if (!jsonBody.role || !jsonBody.role.includes('Developer') || !jsonBody.email) {
-                response.message = `Le contenu du body n'est pas correct pour cette étape. Assurez-vous d'inclure un champ "role" avec la valeur contenant le mot clé "Developer", et un champ "email" dans le body de votre requête pour réussir cette étape.`;
-                response.warning = '💀💀💀 Contenu du body incorrect. Assurez-vous d\'inclure un champ "role" avec la valeur contenant le mot clé "Developer" et un champ "email" dans le body de votre requête pour réussir cette étape. 💀💀💀';
-            } else {
-                response.success = '✅✅✅ Vous avez utilisé la bonne méthode et le bon type de contenu. Vous pouvez passer à l\'étape suivante. ✅✅✅';
+                // Vérification de la présence du champ "role" et de sa valeur
+                if (!jsonBody.role || !jsonBody.role.includes('Developer') || !jsonBody.email) {
+                    response.message = `Le contenu du body n'est pas correct pour cette étape. Assurez-vous d'inclure un champ "role" avec la valeur contenant le mot clé "Developer", et un champ "email" dans le body de votre requête pour réussir cette étape.`;
+                    response.warning = '💀💀💀 Contenu du body incorrect. Assurez-vous d\'inclure un champ "role" avec la valeur contenant le mot clé "Developer" et un champ "email" dans le body de votre requête pour réussir cette étape. 💀💀💀';
+                } else {
+                    response.success = '✅✅✅ Vous avez utilisé la bonne méthode et le bon type de contenu. Vous pouvez passer à l\'étape suivante. ✅✅✅';
+                }
+            } catch (error) {
+                response.message = 'Le contenu du body n\'est pas au format JSON valide.';
+                response.warning = '💀💀💀 Contenu du body incorrect. Assurez-vous que le body est au format JSON valide pour réussir cette étape. 💀💀💀';
             }
-        } catch (error) {
-            response.message = 'Le contenu du body n\'est pas au format JSON valide.';
-            response.warning = '💀💀💀 Contenu du body incorrect. Assurez-vous que le body est au format JSON valide pour réussir cette étape. 💀💀💀';
-        }
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(response));
+        }).on('error', (err) => {
+            console.error('Erreur lors de la lecture du body:', err);
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Internal Server Error' }));
+        });
     }
-
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
+    
 }
 
 module.exports = {
