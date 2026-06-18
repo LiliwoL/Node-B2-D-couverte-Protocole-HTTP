@@ -76,7 +76,7 @@ Method: POST
 Headers:
   Content-Type : application/json
   Authorization:
-  User-Agent:
+  User-Agent: FenelonBTSSIO-UserAgent-LaRochelle v1.0
 Body:
 // Le name doit contenir "Donald Duck"
 {

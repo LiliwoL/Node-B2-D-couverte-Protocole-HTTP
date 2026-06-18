@@ -5,7 +5,10 @@ const sqlite3 = require('sqlite3').verbose();
 // Lecure du fichier .env pour les variables d'environnement
 require('dotenv').config();
 
+
+// *********************************************************
 // Importation des fonctions de chaque étape du jeu de piste
+// *********************************************************
 const { handleEtape1 } = require('./etapes/etape1');
 const { handleEtape2 } = require('./etapes/etape2');
 const { handleEtape3 } = require('./etapes/etape3');
@@ -33,12 +36,13 @@ db.serialize(() => {
 // Mot de passe pour les routes d'administration
 const ADMIN_PASSWORD = 'Azertysio-01';
 
-
+// User-Agent attentu
+global.USER_AGENT = 'FenelonBTSSIO-UserAgent-LaRochelle v1.0'
 
 const server = http.createServer((req, res) => {
-    const userAgent = req.headers['user-agent'];
+    
 
-    if (userAgent === 'FenelonBTSSIO-UserAgent-LaRochelle v1.0') {
+    //if (userAgent === 'FenelonBTSSIO-UserAgent-LaRochelle v1.0') {
         const parsedUrl = url.parse(req.url, true);
         const path = parsedUrl.pathname;
         const method = req.method;
@@ -109,10 +113,7 @@ const server = http.createServer((req, res) => {
                 res.writeHead(404, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ error: 'Page not found' }));
         }
-    } else {
-        res.writeHead(403, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Access forbidden. Invalid User-Agent header.' }));
-    }
+    
 });
 
 // Middleware pour vérifier le mot de passe d'administration

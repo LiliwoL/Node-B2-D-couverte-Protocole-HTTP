@@ -4,7 +4,7 @@
  * Content-Type JSON
  * Authorization
  *  - Clé API
- * User-Agent
+ * User-Agent: FenelonBTSSIO-UserAgent-LaRochelle v1.0
  * Body:
  * {
  *   "name": "Donald Duck"
@@ -25,7 +25,6 @@ function handleEtape9(res, req) {
     const authorizationHeader = req.headers['authorization'];
 
 
-
     // Réponse de base pour l'étape 9
     const response = {
         etape: 'Méthode et type de contenu - POST',
@@ -44,7 +43,7 @@ function handleEtape9(res, req) {
         response.message = `Le type de contenu ${contentType} n'est pas correct pour cette étape. Veuillez utiliser "application/json" comme type de contenu pour réussir cette étape.`;
         response.warning = '💀💀💀 Type de contenu incorrect. Assurez-vous d\'utiliser "application/json" comme type de contenu pour réussir cette étape. 💀💀💀';
     } // Vérification User-Agent
-    else if (userAgent !== 'Fenelon User Agent 1.0') {
+    else if (userAgent !== global.USER_AGENT) {
         response.message = `Le User-Agent ${userAgent} n'est pas correct pour cette étape. Veuillez utiliser "Fenelon User Agent 1.0" comme User-Agent pour réussir cette étape.`;
         response.warning = '💀💀💀 User-Agent incorrect. Assurez-vous d\'utiliser "Fenelon User Agent 1.0" comme User-Agent pour réussir cette étape. 💀💀💀';        
     } // Vérification de la présence de l'en-tête "Authorization" pour la clé API
@@ -68,7 +67,7 @@ function handleEtape9(res, req) {
                 console.log('Json de la requête:', jsonBody);
 
                 // Vérification de la présence du champ "name" et de sa valeur
-                if (!jsonBody.name || !jsonBody.role.includes('Donald Duck')) {
+                if (!jsonBody.name || !jsonBody.name.includes('Donald Duck')) {
                     response.message = `Le contenu du body n'est pas correct pour cette étape. Assurez-vous d'inclure un champ "name" avec la valeur contenant la valeur "Donald Duck" dans le body de votre requête pour réussir cette étape.`;
                     response.warning = '💀💀💀 Contenu du body incorrect. Assurez-vous d\'inclure un champ "role" avec la valeur contenant le mot clé "Developer" et un champ "email" dans le body de votre requête pour réussir cette étape. 💀💀💀';
                 } else {
@@ -86,17 +85,7 @@ function handleEtape9(res, req) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Internal Server Error' }));
         });
-        // Success
-        response.success = '✅✅✅ Vous avez utilisé la bonne méthode et le bon type de contenu. Vous pouvez passer à l\'étape suivante. ✅✅✅';
     }
-
-
-    // *************************************
-
-
-
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(response));
 }
 
 module.exports = {
