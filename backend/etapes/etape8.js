@@ -72,6 +72,7 @@ function handleEtape8(res, req) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Internal Server Error' }));
         });
+        
     }
     
 }

@@ -71,5 +71,31 @@ Body:
 
 # Etape 9
 
-https://developer.mozilla.org/fr/docs/Web/HTTP/Reference/Methods/PATCH
-https://blog.postman.com/http-patch-method/
+URL: /etape9
+Method: POST
+Headers:
+  Content-Type : application/json
+  Authorization:
+  User-Agent:
+Body:
+// Le name doit contenir "Donald Duck"
+{
+  "name": "Donald Duck"
+}
+
+
+Etape 9: Méthode et type de contenu - POST avec contenu - Content-Type JSON - Authorization - Clé API et User-Agent
+
+
+# Etape 10
+
+
+| Step | Title | URL | Method | Headers | Body | Purpose |
+| --- | --- | --- | --- | --- | --- | --- |
+| 14 | Basic Auth | /etape14 | GET | Authorization: Basic <base64> | - | Validate Basic Authentication headers. Return 401 if invalid. |
+| 15 | File Upload | /etape15 | POST | Content-Type: multipart/form-data | File binary | Accept file uploads and save to uploads/ directory. |
+| 16 | Custom Headers | /etape16 | GET | X-Custom-Header: BTS-SIO | - | Check for custom headers. Return 400 if missing. |
+| 17 | Redirect | /etape17 | GET | - | - | Issue a 302 Found redirect to /bienvenue. |
+| 18 | Rate Limiting | /etape18 | GET | - | - | Return 429 Too Many Requests if called >3 times in 10 seconds. |
+| 19 | Webhook | /etape19 | POST | Content-Type: application/json | {"event": "test"} | Simulate a webhook receiver. Validate JSON body. |
+| 20 | CORS | /etape20 | GET | Origin: http://example.com | - | Set Access-Control-Allow-Origin header. Teach CORS basics. |
