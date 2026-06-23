@@ -1,5 +1,5 @@
 /**
- *  Étape 8: Méthode et type de contenu - POST
+ * Étape 8: Méthode et type de contenu - POST
  * URL: /etape8/api/users/12345
  * Méthode: PATCH
  * En-tête: Content-Type: application/json
@@ -17,7 +17,10 @@
  * @param {*} res 
  * @param {*} req 
  */
-function handleEtape8(res, req) {
+function handleEtape8(res, req)
+{
+    console.log("Etape 8");
+
     // Récupération de la méthode et du type de contenu de la requête
     const method = req.method;
     const contentType = req.headers['content-type'];    
@@ -59,6 +62,10 @@ function handleEtape8(res, req) {
                     response.warning = '💀💀💀 Contenu du body incorrect. Assurez-vous d\'inclure un champ "role" avec la valeur contenant le mot clé "Developer" et un champ "email" dans le body de votre requête pour réussir cette étape. 💀💀💀';
                 } else {
                     response.success = '✅✅✅ Vous avez utilisé la bonne méthode et le bon type de contenu. Vous pouvez passer à l\'étape suivante. ✅✅✅';
+                    response.success += 'Le contenu attendu dans le body correspond à la demande, bravo!';
+
+                    response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête POST à l\'URL "/etape9" en incluant un en-tête "Content-Type" de type "application/json", en fournissant la clé api dans le header: api-key: FenelonBTSSIO et en sépcifiant un User-Agent: FenelonBTSSIO-UserAgent-LaRochelle-v1.0 ';
+                    response.next_step += 'Dans le body, vous devez fournir un json contenant un champ "name" qui doit contenir "Donald Duck". Bonne chancz!';
                 }
             } catch (error) {
                 response.message = 'Le contenu du body n\'est pas au format JSON valide.';

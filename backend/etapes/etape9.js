@@ -2,8 +2,8 @@
  * Etape 9: 
  * POST avec contenu attendu
  * Content-Type JSON
- * Authorization
- *  - Clé API
+ * Authorization:
+    api-key: FenelonBTSSIO
  * User-Agent: FenelonBTSSIO-UserAgent-LaRochelle v1.0
  * Body:
  * {
@@ -22,7 +22,9 @@ function handleEtape9(res, req) {
     // User-Agent
     const userAgent = req.headers['user-agent'] || 'non spécifié';
     // Authorization
-    const authorizationHeader = req.headers['authorization'];
+    const authorizationHeader = req.headers['api-key'] || 'non spécifié';
+
+    //console.table(req.headers)
 
 
     // Réponse de base pour l'étape 9
@@ -45,10 +47,11 @@ function handleEtape9(res, req) {
     } // Vérification User-Agent
     else if (userAgent !== global.USER_AGENT) {
         response.message = `Le User-Agent ${userAgent} n'est pas correct pour cette étape. Veuillez utiliser "Fenelon User Agent 1.0" comme User-Agent pour réussir cette étape.`;
-        response.warning = '💀💀💀 User-Agent incorrect. Assurez-vous d\'utiliser "Fenelon User Agent 1.0" comme User-Agent pour réussir cette étape. 💀💀💀';        
+        response.warning = '💀💀💀 User-Agent incorrect. Assurez-vous d\'utiliser "Fenelon User Agent 1.0" comme User-Agent pour réussir cette étape. 💀💀💀';
     } // Vérification de la présence de l'en-tête "Authorization" pour la clé API
-    else if (authorizationHeader) {
-        response.authorization = `Vous avez fourni l\'en-tête Authorization: ${authorizationHeader}`;
+    else if (authorizationHeader!== 'FenelonBTSSIO') {
+        response.message = `Vous n'avez pas fourni de clé API!`;
+        response.warning = '💀💀💀 Clé API non fournie! Founrissez une clé API pour réussir cette étape. 💀💀💀';                
     } else {
                 
         // Récupération du body de la requête
@@ -71,7 +74,7 @@ function handleEtape9(res, req) {
                     response.message = `Le contenu du body n'est pas correct pour cette étape. Assurez-vous d'inclure un champ "name" avec la valeur contenant la valeur "Donald Duck" dans le body de votre requête pour réussir cette étape.`;
                     response.warning = '💀💀💀 Contenu du body incorrect. Assurez-vous d\'inclure un champ "role" avec la valeur contenant le mot clé "Developer" et un champ "email" dans le body de votre requête pour réussir cette étape. 💀💀💀';
                 } else {
-                    response.success = '✅✅✅ Vous avez utilisé la bonne méthode et le bon type de contenu. Vous pouvez passer à l\'étape suivante. ✅✅✅';
+                    response.success = '✅✅✅ Vous avez utilisé la bonne méthode et le bon type de contenu. Vous avez terminé le jeu de piste! ✅✅✅';
                 }
             } catch (error) {
                 response.message = 'Le contenu du body n\'est pas au format JSON valide.';
@@ -80,6 +83,7 @@ function handleEtape9(res, req) {
 
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(response));
+            
         }).on('error', (err) => {
             console.error('Erreur lors de la lecture du body:', err);
             res.writeHead(500, { 'Content-Type': 'application/json' });

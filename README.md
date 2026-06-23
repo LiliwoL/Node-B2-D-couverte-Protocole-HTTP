@@ -9,93 +9,44 @@ npm install sqlite3
 
 ## Lancement
 
-nodemon server.js
+node --watch server.js
 
 ---
 
-Requtete içdempotentes
+# Validation
+
+La validation des étapes:
+1. URL
+2. Méthode
+3. Paramètres
+4. Headers
+5. Body
+
+---
+
+# Règles du jeu de piste HTTP
+
+Le départ se situe à l'adresse: `/bienvenue`
+
+Vous allez devoir utiliser un outil permettant de gérer vos requêtes HTTP.
+- Postman
+- Bruno
+- Insomnia
+- ThunderClient (extension Visual Studio Code)
+
+
+
+Requete idempotentes
 https://developer.mozilla.org/fr/docs/Glossary/Idempotent
 
-# Etape 1
-
-URL: /bienvenue
-
-# Etape 2
-
-Paramètre dans l'URL
-URL: /etape2?nom=votrenom
-
-# Etape 3
-
-URL: /etape3?prenom=truc&age=15
-Méthode GET
-Paramètre dans l'url prenom et age
-
-# Etape 4
-
-Methode POST
-URL: /etape4
-
-# Etape 5
-
-URL: /etape5
-Content-Type = application/json
-Method POST
-
-# Etape 6
-
-URL: /etape6
-Method PUT
-Content-Type = text/html
-Accept = application/json
-
-# Etape 7
-
-URL: /etape7?filename=monfichier.txt
-Methode DELETE
-Paramètre dans l'url filename
-
-https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/DELETE
-
-# Etape 8
-
-URL: /etape8/api/users/457521
-Methode PATCH
-Content-Type : application/json
-Body:
-// Le role doit contenir le mot Developer
-{
-  "role": "Developer",
-  "email": "anything@truc.com"
-}
-
-# Etape 9
-
-URL: /etape9
-Method: POST
-Headers:
-  Content-Type : application/json
-  Authorization:
-  User-Agent: FenelonBTSSIO-UserAgent-LaRochelle v1.0
-Body:
-// Le name doit contenir "Donald Duck"
-{
-  "name": "Donald Duck"
-}
-
-
-Etape 9: Méthode et type de contenu - POST avec contenu - Content-Type JSON - Authorization - Clé API et User-Agent
-
-
-# Etape 10
-
-
-| Step | Title | URL | Method | Headers | Body | Purpose |
-| --- | --- | --- | --- | --- | --- | --- |
-| 14 | Basic Auth | /etape14 | GET | Authorization: Basic <base64> | - | Validate Basic Authentication headers. Return 401 if invalid. |
-| 15 | File Upload | /etape15 | POST | Content-Type: multipart/form-data | File binary | Accept file uploads and save to uploads/ directory. |
-| 16 | Custom Headers | /etape16 | GET | X-Custom-Header: BTS-SIO | - | Check for custom headers. Return 400 if missing. |
-| 17 | Redirect | /etape17 | GET | - | - | Issue a 302 Found redirect to /bienvenue. |
-| 18 | Rate Limiting | /etape18 | GET | - | - | Return 429 Too Many Requests if called >3 times in 10 seconds. |
-| 19 | Webhook | /etape19 | POST | Content-Type: application/json | {"event": "test"} | Simulate a webhook receiver. Validate JSON body. |
-| 20 | CORS | /etape20 | GET | Origin: http://example.com | - | Set Access-Control-Allow-Origin header. Teach CORS basics. |
+Etape | URL | Methode | Headers | Body | Explication
+-- | -- | -- | -- | -- | --
+Etape 1 | /bienvenue | GET | - | - | Simple
+Etape 2 | /decouverte-des-parametres?nom=votrenom | GET | - | - | Paramètre nom dans l'URL
+Etape 3 | /plusieurs-parametres?prenom=truc&age=15 | GET | - | - | Paramètre prenom et age dans l'URL
+Etape 4 | /un-peu-de-post | POST | - | - | -
+Etape 5 | /5-content-type | POST | Content-Type = application/json | - | Découverte des Content Types
+Etape 6 | /put-method-6 | PUT | Content-Type = text/html Accept = application/json | - | -
+Etape 7 | /et-oui-delete?filename=monfichier.txt | DELETE | - | - | Paramètre dans l'url filename https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods/DELETE
+Etape 8 | /etape8/api/users/457521 | PATCH | Content-Type : application/json | Body: // Le role doit contenir le mot Developer {   "role": "Developer",   "email": "anything@truc.com" } | -
+Etape 9 | /etape9 | POST | Content-Type : application/json Authorization: api-key: FenelonBTSSIO User-Agent: FenelonBTSSIO-UserAgent-LaRochelle-v1.0 | Body: // Le name doit contenir "Donald Duck"   "name": "Donald Duck" } | Etape 9: Méthode et type de contenu - POST avec contenu - Content-Type JSON - Authorization - Clé API et User-Agent

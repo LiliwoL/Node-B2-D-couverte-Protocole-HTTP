@@ -1,7 +1,7 @@
 /**
  * Étape 3: Méthodes HTTP - GET
  * 
- * URL: /etape3?prenom=VotrePrenom&age=19
+ * URL: /plusieurs-parametres?prenom=VotrePrenom&age=19
  * 
  * Dans cette étape, les utilisateurs apprennent à utiliser la méthode GET pour faire des requêtes HTTP.
  * Ils doivent faire une requête GET à l'URL /etape3 pour réussir cette étape.
@@ -33,7 +33,7 @@ function handleEtape3(res, req) {
             if (prenom && age) {
                 response.success = '✅✅✅ Vous avez utilisé la méthode GET avec les bons paramètres. Vous pouvez passer à l\'étape suivante. ✅✅✅';
 
-                response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête POST à l\'URL /etape4.';
+                response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête POST à l\'URL "/un-peu-de-post"   ';
                 response.next_step += 'Cela vous permettra de comprendre comment les différentes méthodes HTTP fonctionnent pour interagir avec les serveurs web. ';
                 response.next_step += 'N\'oubliez pas que la méthode GET est souvent utilisée pour récupérer des données du serveur, tandis que la méthode POST est utilisée pour envoyer des données au serveur. ';
                 response.next_step += 'En utilisant ces méthodes avec les bons paramètres, vous pourrez mieux comprendre comment interagir avec les API RESTful et les serveurs web. ';

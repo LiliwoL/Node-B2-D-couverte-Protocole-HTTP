@@ -1,7 +1,7 @@
 /**
  *  Étape 5: Type de contenu + POST
  * 
- * URL: /etape5
+ * URL: /5-content-type
  * 
  * Dans cette étape, les utilisateurs apprennent à spécifier un type de contenu dans une requête POST.
  * Ils doivent faire une requête POST à l'URL /etape5 en incluant un en-tête "Content-Type" pour réussir cette étape.
@@ -33,7 +33,7 @@ function handleEtape5(req, res) {
             response.success = '✅✅✅ Vous avez spécifié le bon type de contenu. Vous pouvez passer à l\'étape suivante. ✅✅✅';
 
 
-            response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête PUT à l\'URL /etape6 en incluant un en-tête "Content-Type" de type "text/html" et un en-tête "Accept" de type "application/json". ';
+            response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête PUT à l\'URL "/put-method-6" en incluant un en-tête "Content-Type" de type "text/html" et un en-tête "Accept" de type "application/json". ';
             
             response.next_step += 'Cela vous permettra de comprendre comment les en-têtes "Content-Type" et "Accept" fonctionnent ensemble pour spécifier le format des données envoyées et reçues. ';
             response.next_step += 'N\'oubliez pas que la méthode PUT est souvent utilisée pour mettre à jour des ressources sur le serveur, tandis que la méthode POST est utilisée pour créer de nouvelles ressources. ';

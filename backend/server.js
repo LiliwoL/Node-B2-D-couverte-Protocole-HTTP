@@ -37,7 +37,7 @@ db.serialize(() => {
 const ADMIN_PASSWORD = 'Azertysio-01';
 
 // User-Agent attentu
-global.USER_AGENT = 'FenelonBTSSIO-UserAgent-LaRochelle v1.0'
+global.USER_AGENT = 'FenelonBTSSIO-UserAgent-LaRochelle-v1.0'
 
 const server = http.createServer((req, res) => {
     
@@ -65,39 +65,27 @@ const server = http.createServer((req, res) => {
             case '/bienvenue':                
                 handleEtape1(res);
                 break;
-            case '/etape2':
+            case '/decouverte-des-parametres':
                 handleEtape2(res, parsedUrl.query);
                 break;
-            case '/etape3':
+            case '/plusieurs-parametres':
                 handleEtape3(res, req);
                 break;
-            case '/etape4':
+            case '/un-peu-de-post':
                 handleEtape4(res, method);
                 break;
-            case '/etape5':
+            case '/5-content-type':
                 handleEtape5(req,res);
                 break;
-            case '/etape6':
+            case '/put-method-6':
                 handleEtape6(res, req);
                 break;
-            case '/etape7':
+            case '/et-oui-delete':
                 handleEtape7(res, req);
                 break;
             // Etape 8 est traitée séparément pour gérer les chemins dynamiques avec des IDs d'utilisateurs            
             case '/etape9':
                 handleEtape9(res, req);
-                break;
-            case '/etape10':
-                handleEtape10(res, req);
-                break;
-            case '/etape11':
-                handleEtape11(res, req);
-                break;
-            case '/etape12':
-                handleEtape12(res, req);
-                break;
-            case '/etape13':
-                handleEtape13(res, req);
                 break;
             // Ajoutez d'autres étapes du jeu de piste ici...
 

@@ -1,6 +1,6 @@
 /**
  * Étape 6: Types de contenu - PUT
- * URL: /etape6
+ * URL: /put-method-6
  * Methode: PUT
  * Content-Type: text/html
  * Accept: application/json
@@ -37,7 +37,7 @@ function handleEtape6(res, req) {
         } else {
             response.success = '✅✅✅ Vous avez spécifié le bon type de contenu et le bon en-tête Accept. Vous pouvez passer à l\'étape suivante. ✅✅✅';
 
-            response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête DELETE à l\'URL /etape7 en incluant le paramètre "filename" dans l\'URL. ';
+            response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête DELETE à l\'URL "/et-oui-delete" en incluant le paramètre "filename" dans l\'URL. ';
             response.next_step += 'Cela vous permettra de comprendre comment les paramètres dans l\'URL fonctionnent avec la méthode GET pour personnaliser vos requêtes. ';
             response.next_step += 'N\'oubliez pas que la méthode GET est souvent utilisée pour récupérer des données du serveur, tandis que la méthode PUT est utilisée pour mettre à jour des ressources sur le serveur. ';
             response.next_step += 'En utilisant ces méthodes avec les bons types de contenu et les bons paramètres, vous pourrez mieux comprendre comment interagir avec les API RESTful et les serveurs web. ';

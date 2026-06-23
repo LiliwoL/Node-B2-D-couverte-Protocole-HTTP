@@ -12,8 +12,9 @@ function handleEtape1(res) {
     const response = {
         etape: 'Etape 1: Introduction',
         message: 'Bienvenue dans le jeu de piste HTTP !',
-        cours: 'Le protocole HTTP (Hypertext Transfer Protocol) est utilisé pour la communication sur le web. Dans cette première étape, vous allez apprendre les bases du jeu.',
-        next_step: 'Pour passer à l\'étape suivante, faites une requête GET à l\'URL /etape2 avec un paramètre nom dans l\'URL, par exemple: /etape2?nom=VotreNom. Attention, le paramètre nom est obligatoire pour réussir l\'étape suivante.'
+        cours: 'Le protocole HTTP (Hypertext Transfer Protocol) est utilisé pour la communication sur le web. Il est indispensable de maitriser ce protocole pour appréhender le développement web. 📖 https://www.it-connect.fr/le-protocole-http-pour-les-debutants/',
+        next_step: 'Pour passer à l\'étape suivante, faites une requête GET à l\'URL "/decouverte-des-parametres" avec un paramètre "nom" dans l\'URL, par exemple: /decouverte-des-parametres?nom=VotreNom. Attention, le paramètre "nom" est obligatoire pour réussir l\'étape suivante.',
+        tips: 'https://developer.mozilla.org/fr/docs/Web/HTTP/Reference/Methods/GET'
     };
 
     res.writeHead(200, { 'Content-Type': 'application/json' });
