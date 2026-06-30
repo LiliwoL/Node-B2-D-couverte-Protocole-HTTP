@@ -1,15 +1,25 @@
+#   _             _                  _              _     _             _                         _                  _        _   _ _____ _____ ____  
+#  | |    ___    (_) ___ _   _    __| | ___   _ __ (_)___| |_ ___    __| |_   _   _ __  _ __ ___ | |_ ___   ___ ___ | | ___  | | | |_   _|_   _|  _ \ 
+#  | |   / _ \   | |/ _ \ | | |  / _` |/ _ \ | '_ \| / __| __/ _ \  / _` | | | | | '_ \| '__/ _ \| __/ _ \ / __/ _ \| |/ _ \ | |_| | | |   | | | |_) |
+#  | |__|  __/   | |  __/ |_| | | (_| |  __/ | |_) | \__ \ ||  __/ | (_| | |_| | | |_) | | | (_) | || (_) | (_| (_) | |  __/ |  _  | | |   | | |  __/ 
+#  |_____\___|  _/ |\___|\__,_|  \__,_|\___| | .__/|_|___/\__\___|  \__,_|\__,_| | .__/|_|  \___/ \__\___/ \___\___/|_|\___| |_| |_| |_|   |_| |_|    
+#              |__/                          |_|                                 |_|                                                                  
 
-# Serveur
-## Dépendances
+Un jeu de piste pour découvir le protocole HTTP.
+Chaque étape indique comment accéder à la suivante en créant LA bonne requête HTTP (Header, Méthode...)
+Un jeu en 10 étapes (pour le moment) à faire avec Postman, Bruno ou Insomnia.
 
-npm install -g nodemon
+--
 
-npm install sqlite3
+# Règles du jeu de piste HTTP
 
+Le départ se situe à l'adresse: `/bienvenue`
 
-## Lancement
-
-node --watch server.js
+Vous allez devoir utiliser un outil permettant de gérer vos requêtes HTTP.
+- Postman
+- Bruno
+- Insomnia
+- ThunderClient (extension Visual Studio Code)
 
 ---
 
@@ -24,16 +34,21 @@ La validation des étapes:
 
 ---
 
-# Règles du jeu de piste HTTP
+# Serveur Node JS
 
-Le départ se situe à l'adresse: `/bienvenue`
+Dans le dossier BACKEND/
 
-Vous allez devoir utiliser un outil permettant de gérer vos requêtes HTTP.
-- Postman
-- Bruno
-- Insomnia
-- ThunderClient (extension Visual Studio Code)
+```bash
+## Dépendances
+npm install
 
+## Lancement
+node --watch server.js
+```
+
+---
+
+# Correction
 
 
 Requete idempotentes
