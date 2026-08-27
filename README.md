@@ -25,7 +25,7 @@ Vous allez devoir utiliser un outil permettant de gérer vos requêtes HTTP.
 
 ---
 
-# Validation
+# Validation des requêtes
 
 La validation des étapes:
 1. URL
@@ -40,6 +40,8 @@ La validation des étapes:
 
 Dans le dossier BACKEND/
 
+Compléter le fichier **.env**
+
 ```bash
 ## Dépendances
 npm install
@@ -51,7 +53,6 @@ node --watch server.js
 ---
 
 # Correction
-
 
 Requete idempotentes
 https://developer.mozilla.org/fr/docs/Glossary/Idempotent
