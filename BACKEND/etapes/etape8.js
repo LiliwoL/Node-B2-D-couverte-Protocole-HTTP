@@ -64,8 +64,8 @@ function handleEtape8(res, req)
                     response.success = '✅✅✅ Vous avez utilisé la bonne méthode et le bon type de contenu. Vous pouvez passer à l\'étape suivante. ✅✅✅';
                     response.success += 'Le contenu attendu dans le body correspond à la demande, bravo!';
 
-                    response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête POST à l\'URL "/etape9" en incluant un en-tête "Content-Type" de type "application/json", en fournissant la clé api dans le header: api-key: FenelonBTSSIO et en sépcifiant un User-Agent: FenelonBTSSIO-UserAgent-LaRochelle-v1.0 ';
-                    response.next_step += 'Dans le body, vous devez fournir un json contenant un champ "name" qui doit contenir "Donald Duck". Bonne chancz!';
+                    response.next_step = 'Pour passer à l\'étape suivante, vous devez faire une requête POST à l\'URL "/etape9" en incluant un en-tête "Content-Type" de type "application/json", en fournissant la clé api dans le header: api-key: FenelonBTSSIO et en spécifiant un User-Agent: FenelonBTSSIO-UserAgent-LaRochelle-v1.0 ';
+                    response.next_step += 'Dans le body, vous devez fournir un json contenant un champ "name" qui doit contenir "Donald Duck". Bonne chance!';
                 }
             } catch (error) {
                 response.message = 'Le contenu du body n\'est pas au format JSON valide.';
